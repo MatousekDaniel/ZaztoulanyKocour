@@ -12,9 +12,9 @@ prizemi, chodba1, obyvak
 prizemi, chodba1, tajnaMis
 prizemi, chodba1, kuchyn
 prizemi, chodba1, jidelna
-jidelna, kuchyn
-kuchyn, spiz
-obyvak, tajnaMis
+prizemi, jidelna, kuchyn
+prizemi, kuchyn, spiz
+prizemi, obyvak, tajnaMis
 sklep, prostorSklepa, schody1
 sklep, prostorSklepa, mrize1
 sklep, prostorSklepa, mrize2
