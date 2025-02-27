@@ -37,6 +37,7 @@ public class House {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+
             System.out.println("Jsi v místnosti: " + currentRoom.getName());
             System.out.print("Dostupné místnosti: ");
             for (Room r : currentRoom.getConnectedRooms()) {
