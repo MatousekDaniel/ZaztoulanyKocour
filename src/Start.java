@@ -12,18 +12,23 @@ public class Start {
         System.out.println("Basic dialogue");
         System.out.println("Chcete pokracovat? ANO /-/ NE");
         answer = sc.nextLine();
-        while(answer != "ANO" || answer != "NE") {
+        while (!answer.equals("ANO") && !answer.equals("NE")){
+            System.out.println("\u001B[35m" + answer + "\u001B[0m" + " neni platne!");
+            System.out.println("Napiste ANO nebo NE.");
+            answer = sc.nextLine();
+            if(answer.equals("ANO") || answer.equals("NE")){
+                break;
+            }else{
+            }
         }
-        if(sc.nextLine() == "ANO"){
-            House hous = new House("RoomConnection.txt");
-            hous.start();
+        if(answer.equals("ANO")){
+            House house = new House("RoomConnection.txt");
+            house.start();
             Console console = new Console();
             console.start();
-        } else if (sc.nextLine() == "NE") {
-            System.out.println("Snad se brzy uvidime");
+        } else if (answer.equals("NE")) {
+            System.out.println("Snad se brzy uvidime! o/");
             System.exit(0);
-        } else {
-            System.out.println("Napiste ANO nebo NE.");
         }
     }
 }
