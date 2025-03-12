@@ -1,3 +1,5 @@
+package GameMechanics;
+
 import java.io.*;
 import java.util.*;
 
@@ -31,6 +33,14 @@ public class House {
 
         room1.addConnection(room2);
         room2.addConnection(room1);
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public Map<String, Room> getRooms() {
+        return rooms;
     }
 
     public void start() {

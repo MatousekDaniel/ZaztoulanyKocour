@@ -1,3 +1,5 @@
+package GameMechanics;
+
 import java.util.*;
 
 public class Room {

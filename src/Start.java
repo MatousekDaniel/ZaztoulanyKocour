@@ -22,7 +22,7 @@ public class Start {
             }
         }
         if(answer.equals("ANO")){
-            House house = new House("RoomConnection.txt");
+            GameMechanics.House house = new GameMechanics.House("RoomConnection.txt");
             house.start();
             Console console = new Console();
             console.start();

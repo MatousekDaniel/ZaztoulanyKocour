@@ -24,7 +24,7 @@ public class Console {
             System.out.println(">> "+map.get(comm).execute());
             exit = map.get(comm).exit();
         }else{
-            System.out.println(">> Nedefinovany comm");
+            System.out.println(">> Příkaz je neplatný, pro seznam příkazů napište ´Příkazy´.");
         }
     }
 
