@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class Console {
     private boolean exit = false;
     private HashMap<String, Command> map = new HashMap<>();
-    public static String allCommands = "allCommands.txt";
+    public static String allCommands = "CommHistory.txt";
     public void inicializace(){
+        map.put("příkazy", new Comms());
         map.put("jdi", new Go());
+        map.put("opustit", new Quit());
     }
 
     private Scanner sc = new Scanner(System.in);

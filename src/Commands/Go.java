@@ -7,14 +7,15 @@ import java.util.Scanner;
 
 public class Go extends Command{
 
-    private House house;
+    private House house = new House("RoomConnection.txt");
     private Room currentRoom;
 
     @Override
     public String execute() {
-        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        currentRoom = house.getRooms().get("chodba1");
+
+        Scanner scanner = new Scanner(System.in);
 
             System.out.println("Jsi v místnosti: " + currentRoom.getName());
             System.out.print("Dostupné místnosti: ");
@@ -26,20 +27,16 @@ public class Go extends Command{
             System.out.print("Kam chceš jít? (napiš 'exit' pro ukončení): ");
             String input = scanner.nextLine().trim();
 
-            if (input.equalsIgnoreCase("exit")) break;
-
             Room nextRoom = house.getRooms().get(input);
 
             if (nextRoom != null && currentRoom.isConnectedTo(nextRoom)) {
                 currentRoom = nextRoom;
                 System.out.println("Přesunul jsi se do: " + currentRoom.getName());
-            } else {
+            }else {
                 System.out.println("Nemůžeš jít tam, kam chceš.");
             }
-        }
 
-        scanner.close();
-        return null;
+        return "";
     }
 
     @Override
