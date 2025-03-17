@@ -1,3 +1,5 @@
 příkazy
 jdi
 opustit
+prozkoumat
+prohlédnout

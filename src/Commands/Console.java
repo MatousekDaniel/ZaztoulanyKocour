@@ -1,5 +1,7 @@
 package Commands;
 
+import GameMechanics.House;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.HashMap;
@@ -9,51 +11,66 @@ public class Console {
     private boolean exit = false;
     private HashMap<String, Command> map = new HashMap<>();
     public static String allCommands = "CommHistory.txt";
-    public void inicializace(){
+    private House house;  // Přidání objektu house, který bude sdílen mezi příkazy
+
+    // Konstruktor pro předání objektu House
+    public Console(House house) {
+        this.house = house;
+    }
+
+    // Inicializace příkazů
+    public void inicializace() {
         map.put("příkazy", new Comms());
-        map.put("jdi", new Go());
+        map.put("jdi", new Go(house));  // Předání house do příkazu Go
         map.put("opustit", new Quit());
+        map.put("prozkoumat", new Explore(house));  // Předání house do příkazu Explore
+        map.put("prohlednout", new Look(house));
     }
 
     private Scanner sc = new Scanner(System.in);
-    private void exec(){
-        System.out.print(">>");
-        String comm = sc.nextLine();
-        comm = comm.trim();
-        comm = comm.toLowerCase();
+
+    // Metoda pro vykonání příkazu
+    private void exec() {
+        System.out.print(">> ");
+        String comm = sc.nextLine().trim().toLowerCase();
         saveCommands(comm);
-        if(map.containsKey(comm)){
-            System.out.println(">> "+map.get(comm).execute());
+
+        if (map.containsKey(comm)) {
+            System.out.println(">> " + map.get(comm).execute());
             exit = map.get(comm).exit();
-        }else{
+        } else {
             System.out.println(">> Příkaz je neplatný, pro seznam příkazů napište ´Příkazy´.");
         }
     }
 
-    public void start(){
+    // Hlavní smyčka pro spuštění konzole
+    public void start() {
         inicializace();
-        try{
+        try {
             resetAllCommands();
-            do{
+            do {
                 exec();
-            }while(!exit);
-        }catch (Exception e){
+            } while (!exit);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void saveCommands(String prikaz){
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(allCommands,true))){
+    // Uložení příkazů do souboru
+    private void saveCommands(String prikaz) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(allCommands, true))) {
             bw.write(prikaz);
             bw.newLine();
-        }catch(Exception e){
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    private void resetAllCommands(){
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(allCommands,false))){
-        }catch(Exception e){
 
+    // Resetování historie příkazů
+    private void resetAllCommands() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(allCommands, false))) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

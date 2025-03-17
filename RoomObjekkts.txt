@@ -1,0 +1,3 @@
+chodba1, stul
+satna, skrin
+satna, botnik
