@@ -15,7 +15,7 @@ public class Objekkt {
         this.name = name;
         this.room = room;
         this.items = new ArrayList<>();
-        loadItems(itemsFile); // Každý nábytek si načte své předměty
+        loadItems(itemsFile);
     }
 
     public String getName() {
@@ -28,10 +28,6 @@ public class Objekkt {
 
     public List<Item> getItems() {
         return items;
-    }
-
-    public void addItem(Item item) {
-        items.add(item);
     }
 
     private void loadItems(String fileName) {

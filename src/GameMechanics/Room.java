@@ -6,13 +6,16 @@ import java.util.*;
 public class Room {
     private String name;
     private List<Room> connectedRooms;
-    private List<Objekkt> objects; // Seznam nábytku v místnosti
+    private List<Objekkt> objects;
+    private List<Chara> characters;
 
-    public Room(String name, String furnitureFile, String itemsFile) {
+    public Room(String name, String furnitureFile, String itemsFile, String charactersFile) {
         this.name = name;
         this.connectedRooms = new ArrayList<>();
         this.objects = new ArrayList<>();
-        loadFurniture(furnitureFile, itemsFile); // Každá místnost načte svůj nábytek
+        this.characters = new ArrayList<>();
+        loadFurniture(furnitureFile, itemsFile);
+        loadCharacters(charactersFile);
     }
 
     public String getName() {
@@ -41,6 +44,14 @@ public class Room {
         return objects;
     }
 
+    public void addCharacter(Chara character) {
+        characters.add(character);
+    }
+
+    public List<Chara> getCharacters() {
+        return characters;
+    }
+
     private void loadFurniture(String furnitureFile, String itemsFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(furnitureFile))) {
             String line;
@@ -51,11 +62,31 @@ public class Room {
                     String objectName = parts[1].trim();
 
                     if (roomName.equals(this.name)) {
-                        this.addObject(new Objekkt(objectName, this, itemsFile)); // Předáme itemsFile
+                        this.addObject(new Objekkt(objectName, this, itemsFile));
                     }
                 }
             }
         } catch (IOException e) {}
     }
 
+    private void loadCharacters(String charactersFile) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(charactersFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(", ");
+                if (parts.length == 4) {
+                    String charName = parts[0].trim();
+                    String roomName = parts[1].trim();
+                    String dialog = parts[2].trim();
+                    String itemName = parts[3].trim();
+
+                    if (roomName.equals(this.name)) {
+                        this.addCharacter(new Chara(charName, this, dialog, itemName));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Chyba při načítání postav pro " + name + ": " + e.getMessage());
+        }
+    }
 }

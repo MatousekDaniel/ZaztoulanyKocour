@@ -11,7 +11,7 @@ public class Console {
     private boolean exit = false;
     private HashMap<String, Command> map = new HashMap<>();
     public static String allCommands = "CommHistory.txt";
-    private House house;  // Přidání objektu house, který bude sdílen mezi příkazy
+    private House house;
 
     // Konstruktor pro předání objektu House
     public Console(House house) {
@@ -21,18 +21,21 @@ public class Console {
     // Inicializace příkazů
     public void inicializace() {
         map.put("příkazy", new Comms());
-        map.put("jdi", new Go(house));  // Předání house do příkazu Go
+        map.put("jdi", new Go(house));
         map.put("opustit", new Quit());
-        map.put("prozkoumat", new Explore(house));  // Předání house do příkazu Explore
-        map.put("prohlednout", new Look(house));
+        map.put("prozkoumat", new Explore(house));
+        map.put("prohlédnout", new Look(house));
+        map.put("vzít", new Take(house));
+        map.put("promluv", new Talk(house));
+        map.put("dej", new Give(house));
+        map.put("připomenout", new Remind(house));
     }
 
     private Scanner sc = new Scanner(System.in);
 
-    // Metoda pro vykonání příkazu
     private void exec() {
         System.out.print(">> ");
-        String comm = sc.nextLine().trim().toLowerCase();
+        String comm = sc.nextLine();
         saveCommands(comm);
 
         if (map.containsKey(comm)) {
@@ -43,7 +46,7 @@ public class Console {
         }
     }
 
-    // Hlavní smyčka pro spuštění konzole
+
     public void start() {
         inicializace();
         try {
@@ -56,7 +59,7 @@ public class Console {
         }
     }
 
-    // Uložení příkazů do souboru
+
     private void saveCommands(String prikaz) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(allCommands, true))) {
             bw.write(prikaz);
@@ -66,7 +69,7 @@ public class Console {
         }
     }
 
-    // Resetování historie příkazů
+
     private void resetAllCommands() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(allCommands, false))) {
         } catch (Exception e) {

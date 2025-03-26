@@ -3,3 +3,7 @@ jdi
 opustit
 prozkoumat
 prohlédnout
+vzít
+promluv
+dej
+připomenout
