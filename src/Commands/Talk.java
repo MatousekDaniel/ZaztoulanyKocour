@@ -23,7 +23,7 @@ public class Talk extends Command {
         List<Chara> characters = currentRoom.getCharacters();
 
         if (characters.isEmpty()) {
-            return "V této místnosti není nikdo, s kým bys mohl mluvit.";
+            return "V této místnosti není nikdo, s kým bys mohl mluvit..";
         }
 
         System.out.println("S kým chceš mluvit?");
