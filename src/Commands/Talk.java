@@ -8,6 +8,9 @@ import GameMechanics.Room;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Lets the player talk with the ingame characters.
+ */
 public class Talk extends Command {
     private House house;
     private Scanner scanner;

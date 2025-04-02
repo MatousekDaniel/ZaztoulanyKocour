@@ -8,6 +8,9 @@ import GameMechanics.Room;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Lets the player look into the furniture to see if it includes any items.
+ */
 public class Look extends Command {
     private House house;
 
@@ -20,7 +23,7 @@ public class Look extends Command {
         Room currentRoom = house.getCurrentRoom();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Co chceš prohlédnout? (napiš název nábytku)");
+        System.out.println("Co si chceš prohlédnout? (napiš název nábytku)");
         String input = scanner.nextLine().trim();
 
         for (Objekkt objekkt : currentRoom.getObjects()) {

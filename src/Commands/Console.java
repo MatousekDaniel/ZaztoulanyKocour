@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Structure for the console.
+ * Original Author: Michaela Meitnerová
+ */
 public class Console {
     private boolean exit = false;
     private HashMap<String, Command> map = new HashMap<>();
@@ -23,9 +27,9 @@ public class Console {
         map.put("příkazy", new Comms());
         map.put("jdi", new Go(house));
         map.put("opustit", new Quit());
-        map.put("prozkoumat", new Explore(house));
-        map.put("prohlédnout", new Look(house));
-        map.put("vzít", new Take(house));
+        map.put("prozkoumej", new Explore(house));
+        map.put("prohlédni", new Look(house));
+        map.put("vezmi", new Take(house));
         map.put("promluv", new Talk(house));
         map.put("dej", new Give(house));
         map.put("připomenout", new Remind(house));

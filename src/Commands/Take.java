@@ -9,6 +9,9 @@ import GameMechanics.Room;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Takes an item out of a furniture and adds it to the players inventory.
+ */
 public class Take extends Command {
     private House house;
 
@@ -24,7 +27,6 @@ public class Take extends Command {
             return "Momentálně nemáš aktivní žádný úkol, takže nic nepotřebuješ.";
         }
 
-        String requiredItem = activeQuest.getRequiredItem();
         Room currentRoom = house.getCurrentRoom();
         List<Objekkt> objects = currentRoom.getObjects();
 
@@ -53,10 +55,6 @@ public class Take extends Command {
 
         if (itemName.isEmpty()) {
             return "Musíš zadat název předmětu!";
-        }
-
-        if (!itemName.equalsIgnoreCase(requiredItem)) {
-            return "Tento předmět nepotřebuješ pro svůj úkol, nemůžeš ho vzít.";
         }
 
 

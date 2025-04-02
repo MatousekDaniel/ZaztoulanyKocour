@@ -10,6 +10,9 @@ import GameMechanics.Quest;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Lets the user give a quest items to the characters in the game.
+ */
 public class Give extends Command {
     private House house;
     private Scanner scanner;
@@ -35,13 +38,13 @@ public class Give extends Command {
         }
 
         System.out.print("> ");
-        String chosenName = scanner.nextLine().trim();
+        String chosenName = scanner.nextLine().trim(); // .trim() Gets rid of spaces at the back and end of a String but doesnt interfere with the spaces in the string
 
         for (Chara character : characters) {
             if (character.getName().equalsIgnoreCase(chosenName)) {
                 Quest quest = house.getActiveQuest();
-                if (quest == null || !quest.getCharacterName().equals(character.getName())) {
-                    return character.getName() + ": Nemáš pro mě žádný úkol.";
+                if (quest == null || !quest.getCharacterName().equals(character.getName())) { // checks if a quest exists or if the character he chose doesnt equal a character he has a quest from.
+                    return character.getName() + ": Zatím jsem ti nezadával žádný úkol.";
                 }
 
                 System.out.println("Jaký předmět chceš dát?");

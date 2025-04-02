@@ -7,6 +7,9 @@ import GameMechanics.Chara;
 
 import java.util.List;
 
+/**
+ * Writes out the furniture and characters that the player can find in the current room.
+ */
 public class Explore extends Command {
     private House house;
 
@@ -17,11 +20,11 @@ public class Explore extends Command {
     @Override
     public String execute() {
         Room currentRoom = house.getCurrentRoom();
-        StringBuilder output = new StringBuilder("Nacházíš se v místnosti: " + currentRoom.getName() + "\n");
+        StringBuilder output = new StringBuilder("Nacházíš se v místnosti: " + currentRoom.getName() + "\n"); //StringBuilder creates an object and then rewrites its data unlike String that makes a new object every time
 
         List<Objekkt> objects = currentRoom.getObjects();
         if (objects.isEmpty()) {
-            output.append("V této místnosti není žádný nábytek.\n");
+            output.append("V této místnosti není žádný nábytek.\n"); // Append make any other data type a String
         } else {
             output.append("V místnosti se nachází:\n");
             for (Objekkt obj : objects) {

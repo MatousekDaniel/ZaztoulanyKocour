@@ -1,5 +1,8 @@
 package Commands;
 
+/**
+ * Quits the game
+ */
 public class Quit extends Command{
     @Override
     public String execute() {

@@ -9,7 +9,7 @@ prvniPatro, chodba2, koupelna
 prizemi, chodba1, schody2
 prizemi, chodba1, satna
 prizemi, chodba1, obyvak
-prizemi, chodba1, tajnaMis
+prizemi, chodba1, tajnaMistnost
 prizemi, chodba1, kuchyn
 prizemi, chodba1, jidelna
 prizemi, jidelna, kuchyn

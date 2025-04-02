@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Writes out all the useable commands for the user.
+ */
 public class Comms extends Command{
     @Override
     public String execute() {

@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creates furniture with items in them.
+ */
 public class Objekkt {
     private String name;
     private Room room;
@@ -18,18 +21,10 @@ public class Objekkt {
         loadItems(itemsFile);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
+    /**
+     * Loads items into furniture.
+     * @param fileName
+     */
     private void loadItems(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -47,5 +42,17 @@ public class Objekkt {
         } catch (IOException e) {
             System.out.println("Chyba při načítání předmětů pro " + name + ": " + e.getMessage());
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 }

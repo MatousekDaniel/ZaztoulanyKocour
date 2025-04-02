@@ -1,5 +1,8 @@
 package GameMechanics;
 
+/**
+ * Quest system.
+ */
 public class Quest {
     private String characterName;
     private String requiredItem;

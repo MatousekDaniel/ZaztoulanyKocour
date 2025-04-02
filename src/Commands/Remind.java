@@ -3,6 +3,9 @@ package Commands;
 import GameMechanics.House;
 import GameMechanics.Quest;
 
+/**
+ * Reminds the player about their active quest.
+ */
 public class Remind extends Command {
     private House house;
 

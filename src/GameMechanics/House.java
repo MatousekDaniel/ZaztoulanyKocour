@@ -3,6 +3,9 @@ package GameMechanics;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Pretty much the main class that is responsible for the map and logic of the game.
+ */
 public class House {
     private Map<String, Room> rooms;
     private Room currentRoom;
@@ -10,6 +13,7 @@ public class House {
     private Quest activeQuest;
     private int totalCharactes;
     private int completedQuests;
+    private Room secretRoom;
 
     public House(String roomFile, String furnitureFile, String itemsFile, String charactersFile) {
         this.rooms = new HashMap<>();
@@ -18,11 +22,19 @@ public class House {
         this.activeQuest = null;
     }
 
+    /**
+     * Loads in rooms that create a map (House).
+     *
+     * @param roomFile
+     * @param furnitureFile
+     * @param itemsFile
+     * @param charactersFile
+     */
     private void loadRooms(String roomFile, String furnitureFile, String itemsFile, String charactersFile) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(roomFile))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(roomFile))) { // BufferReader reads files, FileReader opens files
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(", ");
+                String[] parts = line.split(", "); //Splits a line into different parts using , | then puts them into a pole
 
                 if (parts.length == 3) {
                     String room1 = parts[1].trim();
@@ -37,14 +49,23 @@ public class House {
                 }
             }
 
+            secretRoom = rooms.get("tajnaMistnost");
+            if (secretRoom != null) {
+                secretRoom.setLocked(true);
+            }
 
-            currentRoom = rooms.getOrDefault("chodba1", rooms.values().stream().findFirst().orElse(null));
+            currentRoom = rooms.getOrDefault("chodba1", rooms.values().stream().findFirst().orElse(null)); // makes chodba1 the starting room. If it doesnt exist, makes the first room it finds the starting room.
 
         } catch (IOException e) {
             System.err.println("Chyba při načítání místností: " + e.getMessage());
         }
     }
 
+    /**
+     * Connects rooms.
+     * @param room1Name
+     * @param room2Name
+     */
     private void addConnection(String room1Name, String room2Name) {
 
         Room room1 = rooms.get(room1Name);
@@ -59,6 +80,11 @@ public class House {
         }
     }
 
+    /**
+     * Counts the amount of characters located in the game.
+     * @param charactersFile
+     * @return
+     */
     public int totalCharactersCount(String charactersFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(charactersFile))) {
             while (reader.readLine() != null) {
@@ -70,10 +96,16 @@ public class House {
         return totalCharactes;
     }
 
+    /**
+     * After completing all the quests ends the game.
+     */
     public void end(){
-        if (completedQuests == totalCharactes){
-            System.out.println("Konec hry, děkujem.");
-            System.exit(0);
+        secretRoom = rooms.get("tajnaMistnost");
+        if (completedQuests == totalCharactes) {
+            if (secretRoom != null) {
+                secretRoom.setLocked(false);
+                System.out.println("\u001B[33mTajná místnost se odemkla!\u001B[0m");
+            }
         }else{
 
         }

@@ -1,9 +1,9 @@
 příkazy
 jdi
 opustit
-prozkoumat
-prohlédnout
-vzít
+prozkoumej
+prohlédni
+vezmi
 promluv
 dej
 připomenout

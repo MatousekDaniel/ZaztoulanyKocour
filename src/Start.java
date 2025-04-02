@@ -1,15 +1,30 @@
 import Commands.Console;
 import GameMechanics.House;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Start {
+    /**
+     * Either starts or ends the game.
+     * 1
+     */
     public void startDialogue() {
 
         String answer;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Basic dialogue");
+        try (BufferedReader br = new BufferedReader(new FileReader("StartDialogue.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.err.println("\u001B[35mChyba při načítání souboru: \u001B[91m" + e.getMessage() + "\u001B[0m");
+        }
+
         System.out.println("Chcete pokracovat? ANO /-/ NE");
         answer = sc.nextLine().toUpperCase();
 

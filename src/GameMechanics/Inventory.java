@@ -3,6 +3,9 @@ package GameMechanics;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The inventory system.
+ */
 public class Inventory {
     private List<Item> items;
 

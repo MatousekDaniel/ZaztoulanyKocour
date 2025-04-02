@@ -1,5 +1,8 @@
 package GameMechanics;
 
+/**
+ * Class responsible for ensuring the character is correctly created.
+ */
 public class Chara {
     private String name;
     private Room room;
